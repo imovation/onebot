@@ -5,43 +5,24 @@
   ],
   "default_agent": "biz-dev",
   "command": {
-    "apply": {
-      "template": "运行 claw apply，执行集群调和。先检查当前集群状态，再执行变更，最后验证结果。",
-      "description": "执行 claw apply 集群调和"
-    },
-    "status": {
-      "template": "运行 claw status，查看集群当前状态。",
-      "description": "查看集群状态"
-    },
-    "ps": {
-      "template": "运行 claw ps，查看所有 Pod 进程状态。",
-      "description": "查看 Pod 进程状态"
-    },
-    "repair": {
-      "template": "运行 claw repair 对指定 Pod 执行修复。参数：$ARGUMENTS（Pod 名称）。",
-      "description": "修复指定 Pod"
-    },
-    "lint": {
-      "template": "对项目中的 Python 文件运行 ruff check，报告并修复代码风格问题。",
-      "description": "运行 Python lint 检查"
+    "hello": {
+      "template": "echo 'Hello from Onebot! Your agent is ready.'",
+      "description": "测试命令：向世界问好"
     }
   },
   "formatter": {
-    "ruff": {
-      "command": ["ruff", "format", "$FILE"],
-      "extensions": [".py"]
+    "prettier": {
+      "command": ["npx", "prettier", "--write", "$FILE"],
+      "extensions": [".js", ".ts", ".json", ".md"]
     }
   },
   "watcher": {
     "ignore": [
-      "**/__pycache__/**",
-      "*.pyc",
-      "*.pyo",
-      ".openclaw*/**",
-      "*.log",
-      "logs/**",
-      "*.service.bak",
-      "node_modules/**"
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "*.log"
     ]
   }
 }
