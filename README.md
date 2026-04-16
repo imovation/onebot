@@ -60,3 +60,21 @@ opencode
 
 ## 📜 规则机制
 Onebot 遵守“瘦配置，胖角色”原则。全局的 `opencode.json` 只保留最底层的物理设定（如绝对路径），所有的“治本原则”、“开发红线”全部通过 `@file` 机制精准挂载到对应的 Agent 上。
+
+## 🔄 双向同步引擎 (Bidirectional Sync Engine)
+
+Onebot 并非静态的模板，而是具备自我进化能力的底座。通过自带的 `onebot.sh` 脚本，您可以实现基建在业务中的“就地演进”与“向下分发”：
+
+### 1. 向下分发：汲取母体最新认知 (`pull`)
+当母体仓库 (Onebot) 有更新时，进入您的任何业务项目目录：
+```bash
+./onebot.sh pull
+```
+* **安全覆盖机制**：它会自动拉取最新的 `.opencode/agents`, `rules`, `specs` 和通用技能，但**绝不触碰**您当前业务的 `opencode.json`（保护业务命令）和 `REQUESTS.md`（保护业务本地需求池）。
+
+### 2. 向上反哺：就地演进并回推母体 (`push`)
+如果您在业务开发中，发现 Onebot 的某条核心规则不合理，您可以**直接就地修改**当前业务目录下的规则并验证。验证通过后：
+```bash
+./onebot.sh push
+```
+* **自动反向提取**：它会自动将您本地经过验证的最新基建结构，复制到您本地的 Onebot 母体目录（默认：`~/opencode-workspace/onebot`），并自动执行 Git Commit 和 Push！
