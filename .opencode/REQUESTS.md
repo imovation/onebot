@@ -66,4 +66,4 @@
 - 提供一种纯净的源码拉取与反哺机制（非 Git Submodule 嵌套方案）。
 - 实现一键式的 CLI 工具（如 `onebot.sh`）。
 
-**关联 Spec**: `.opencode/specs/SYNC_ENGINE_SPEC.md`
+**关联 Spec**: `.opencode/tools/sync-engine/SPEC.md`
